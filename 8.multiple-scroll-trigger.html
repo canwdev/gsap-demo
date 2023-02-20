@@ -15,10 +15,13 @@
     }
 
     .my-screen {
-      height: 100vh;
       width: 100%;
       padding: 100px;
       box-sizing: border-box;
+    }
+
+    .fvh {
+      height: 100vh;
     }
 
     .screen-1 {
@@ -27,13 +30,14 @@
     }
 
     .screen-2 {
-      background-color: seagreen;
-      color: white;
+      background-color: white;
+      color: seagreen;
     }
 
     .screen-3 {
       background-color: hotpink;
       color: white;
+      overflow: hidden;
     }
 
     .container {
@@ -56,6 +60,8 @@
     .my-text {
       font-size: 16px;
       line-height: 1.5;
+      margin-top: 30px;
+      margin-bottom: 30px;
     }
 
 
@@ -81,11 +87,26 @@
     .box3 {
       background-color: green;
     }
+
+    .rectangle-1 {
+      width: 300px;
+      height: 200px;
+      background-color: yellowgreen;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rectangle-2 {
+      width: 200px;
+      height: 400px;
+      background-color: orangered;
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 
 <body>
-  <div class="my-screen screen-1">
+  <div class="my-screen screen-1 fvh">
     <div class="text-wrap container">
       <div class="my-title">Screen 1</div>
       <div class="my-subtitle">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
@@ -120,20 +141,14 @@
         Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </div>
-    </div>
-
-    <div class="graph-wrap container">
-      <div class="box box1"></div>
-      <div class="box box2"></div>
-      <div class="box box3"></div>
-    </div>
-  </div>
-
-  <div class="my-screen screen-3">
-    <div class="text-wrap container">
-      <div class="my-title">Screen 3</div>
-      <div class="my-subtitle">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-        velit...</div>
+      <div class="my-text">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </div>
       <div class="my-text">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
         standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
@@ -143,11 +158,38 @@
         of Lorem Ipsum.
       </div>
     </div>
+  </div>
 
-    <div class="graph-wrap container">
-      <div class="box box1"></div>
-      <div class="box box2"></div>
-      <div class="box box3"></div>
+  <div class="my-screen screen-3 fvh">
+    <div class="text-wrap container">
+      <div class="my-title">Screen 3</div>
+      <div class="my-subtitle">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+        velit...</div>
+
+      <div class="rectangle-1"></div>
+
+      <div style="margin-left: 300px; margin-top: 50px;">
+        <div class="rectangle-2"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="my-screen screen-4">
+    <div class="text-wrap container">
+      <div class="my-title">Screen 4</div>
+      <div class="my-subtitle">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+        velit...</div>
+
+      <div class="my-text">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </div>
     </div>
   </div>
 
@@ -156,7 +198,89 @@
       gsap.registerPlugin(Flip)
       gsap.registerPlugin(ScrollTrigger)
 
+      const animScreen1 = () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: `.screen-1`,
+            // markers: true,
+            pin: true,
+            scrub: 1,
+            toggleActions: 'restart none none reverse',
+            end: '+=2000',
+          },
+        })
 
+
+        tl.fromTo(`.screen-1 .text-wrap`, {
+          autoAlpha: 0,
+          y: 40
+        }, {
+          autoAlpha: 1,
+          y: 0
+
+        })
+
+        const items = gsap.utils.toArray(`.screen-1 .box`)
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i]
+
+          tl.to(item, {
+            x: 500
+          })
+        }
+      }
+      const animScreen2 = () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: `.screen-2`,
+            // markers: true,
+            pin: false,
+            scrub: 1,
+            start: "top center",
+            end: "40% center",
+            toggleActions: 'restart none none reverse',
+          },
+        })
+
+
+        tl.fromTo(`.screen-2 .text-wrap`, {
+          autoAlpha: 0,
+          y: 40
+        }, {
+          autoAlpha: 1,
+          y: 0
+
+        })
+      }
+      const animScreen3 = () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: `.screen-3`,
+            markers: true,
+            pin: false,
+            scrub: 1,
+            pin: true,
+            toggleActions: 'restart none none reverse',
+          },
+        })
+
+        tl.to(`.screen-3 .my-title`, {
+          x: 300,
+          zoom: 3
+        })
+        tl.to(`.screen-3 .my-subtitle`, {
+          color: 'yellow'
+        }, '<')
+
+        const fitTransition = Flip.fit(`.screen-3 .rectangle-1`, `.screen-3 .rectangle-2`, {
+          scale: true,
+          duration: 1,
+        })
+        tl.add(fitTransition)
+      }
+      animScreen1()
+      animScreen2()
+      animScreen3()
     }
     runEffect()
   </script>
