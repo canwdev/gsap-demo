@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="gsap-public/minified/gsap.min.js"></script>
+  <script src="gsap-public/minified/Flip.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    .container {
+      border: 1px solid red;
+      padding: 10px;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: seagreen;
+      border-radius: 0px;
+      border: 1px solid black;
+    }
+
+    .box1 {
+      background-color: green;
+    }
+
+    .another-container {
+      margin-top: 100px;
+      margin-left: 100px;
+      border: 1px solid blue;
+      transform: rotate(30deg);
+      padding: 10px;
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box box1"></div>
+  </div>
+
+<div class="another-container"></div>
+
+  <script>
+    gsap.registerPlugin(Flip)
+
+    const boxEl = document.querySelector('.box1')
+    const finalContainerEl = document.querySelector('.another-container')
+
+    const state = Flip.getState(boxEl)
+    finalContainerEl.appendChild(boxEl)
+
+    
+	// FLIP!
+	transition = Flip.from(state, {
+		scale: true,
+    // absolute: true,
+    // nested: true,
+		duration: 1,
+		repeat: -1,
+		repeatDelay: 1.5,
+		ease: "power1.inOut",
+		paused: false,
+    yoyo: true
+	})
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="gsap-public/minified/gsap.min.js"></script>
+
+  <style>
+    .box {
+      width: 30px;
+      height: 30px;
+      background-color: seagreen;
+      position: absolute;
+      top: 50px;
+      left: 100px;
+      border-radius: 0px;
+      border: 1px solid black;
+    }
+
+    .box1 {
+      background-color: yellow;
+    }
+
+    .box2 {
+      top: 100px;
+      background-color: red;
+    }
+
+    .box3 {
+      top: 150px;
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box box1"></div>
+  <div class="box box2"></div>
+  <div class="box box3"></div>
+
+  <script>
+    // create a timeline
+    let tl = gsap.timeline({ repeat: -1, repeatDelay: 1, yoyo: true })
+
+    // add the tweens to the timeline - Note we're using tl.to not gsap.to
+    tl.to(".box1", {
+      x: 600, duration: 2, ease: 'none',
+      // arrow functions are handy for concise callbacks
+      onComplete: () => console.log("the tween is complete")
+    });
+    tl.to(".box2", { x: 600, duration: 1, delay: 0.3 });
+    tl.to(".box3", { x: 600, duration: 1 }, "<");
+  </script>
+</body>
+
+</html>

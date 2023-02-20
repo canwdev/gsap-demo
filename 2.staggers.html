@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="gsap-public/minified/gsap.min.js"></script>
+  <style>
+    #demo {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .box {
+      margin: 0px 1.5% 1.5% 0px;
+      border-radius: 0;
+      display: inline-block;
+    }
+
+    .box.green {
+      width: 30px;
+      height: 30px;
+      background-color: seagreen;
+      border-radius: 0px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo">
+    <h2>GSAP 3 Stagger Demo</h2>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+    <div class="box green"></div>
+  </div>
+
+  <script>
+    gsap.to(".box", 1, {
+      scale: 0.1,
+      y: 60,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+      delay: 1,
+      stagger: {
+        amount: 1.5,
+        grid: "auto",
+        from: "center"
+      }
+    });
+  </script>
+</body>
+
+</html>
