@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="gsap-public/minified/gsap.min.js"></script>
+
+  <style>
+    .box {
+      width: 30px;
+      height: 30px;
+      background-color: seagreen;
+      position: absolute;
+      top: 50px;
+      left: 100px;
+      border-radius: 0px;
+      border: 1px solid black;
+    }
+
+    .box1 {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box box1"></div>
+
+  <button onclick="handleAction('restart')">restart</button>
+  <button onclick="handleAction('play')">play</button>
+  <button onclick="handleAction('pause')">pause</button>
+  <button onclick="handleAction('reverse')">reverse</button>
+  <button onclick="handleAction('revert')">revert</button>
+  <button onclick="handleAction('seek', 0)">seek(0)</button>
+
+  <script>
+    // create a timeline
+    let tl = gsap.timeline({ repeat: -1, repeatDelay: 1, yoyo: true })
+
+    // add the tweens to the timeline - Note we're using tl.to not gsap.to
+    tl.to(".box1", {
+      x: 600, 
+      duration: 3, 
+      ease: "power1.inOut",
+      backgroundColor: '#8d3dae', 
+      borderRadius: '50px',
+      // arrow functions are handy for concise callbacks
+      onComplete: () => console.log("the tween is complete")
+    });
+    tl.pause()
+
+    function handleAction(fnName, val) {
+      console.log('fnName', fnName)
+      tl[fnName](val)
+    }
+  </script>
+</body>
+
+</html>
